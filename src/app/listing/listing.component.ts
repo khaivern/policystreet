@@ -1,15 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
-import { ListingService } from "../shared/services/listing.service";
-import {
-  ICompany,
-  IFilter,
-  IPaginationMetadata,
-} from "../shared/interfaces/common.interface";
-import { BehaviorSubject } from "rxjs";
-import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import { MatTableModule } from "@angular/material/table";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+import { BehaviorSubject } from "rxjs";
+import { SearchFilterComponent } from "../shared/components/search-filter/search-filter.component";
+import {
+    ICompany,
+    IFilter,
+    IPaginationMetadata,
+} from "../shared/interfaces/common.interface";
+import { ListingService } from "../shared/services/listing.service";
 
 @Component({
   selector: "app-listing",
@@ -19,6 +20,7 @@ import { MatTableModule } from "@angular/material/table";
     MatIconModule,
     NgxSkeletonLoaderModule,
     MatTableModule,
+    SearchFilterComponent,
   ],
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
@@ -67,5 +69,10 @@ export class ListingComponent implements OnInit {
       .subscribe((x) => {
         this.data = x.data;
       });
+  }
+
+  onSearch(keyword: string): void {
+    const initialValue = this.filterQuery$.value;
+    this.filterQuery$.next({ ...initialValue, searchValue: keyword });
   }
 }
