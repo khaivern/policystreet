@@ -11,6 +11,7 @@ import {
     IPaginationMetadata,
 } from "../shared/interfaces/common.interface";
 import { ListingService } from "../shared/services/listing.service";
+import { StatusFilterComponent } from '../shared/components/status-filter/status-filter.component';
 
 @Component({
   selector: "app-listing",
@@ -21,6 +22,7 @@ import { ListingService } from "../shared/services/listing.service";
     NgxSkeletonLoaderModule,
     MatTableModule,
     SearchFilterComponent,
+    StatusFilterComponent,
   ],
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
@@ -74,5 +76,10 @@ export class ListingComponent implements OnInit {
   onSearch(keyword: string): void {
     const initialValue = this.filterQuery$.value;
     this.filterQuery$.next({ ...initialValue, searchValue: keyword });
+  }
+
+  onStatusChange(statuses: string[]): void {
+    const initialValue = this.filterQuery$.value;
+    this.filterQuery$.next({ ...initialValue, statusList: statuses });
   }
 }

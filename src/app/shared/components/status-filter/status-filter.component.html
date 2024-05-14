@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline">
+  <mat-select [formControl]="statusControl" multiple placeholder="Status">
+    <mat-select-trigger>
+      {{ statusControl.value[0] || "" }}
+      @if ((statusControl.value.length || 0) > 1) {
+      <span class="additional-selection">
+        (+{{ (statusControl.value.length || 0) - 1 }}
+        {{ statusControl.value.length === 2 ? "other" : "others" }})
+      </span>
+      }
+    </mat-select-trigger>
+    @for (status of STATUS_LIST; track status) {
+    <mat-option [value]="status">{{ status }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
