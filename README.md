@@ -1,27 +1,25 @@
 # AngularAssessment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+## Technical Requirements
 
-## Development server
+This application is running on the following:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular V17
+- Material Angular
+- Special Packages: ngx-skeleton-loader
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Product Requirements
 
-## Build
+For this task, you should meet the following requirements:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. All information are to be displayed in a table. The use of RxJs is required.
+2. Information can be filtered accordingly with search and dropdown (for
+   status).
+3. Display loading placeholder skeleton indicator
+4. Display appropriate message when no data found
+5. Pagination with mat-paginator
+6. (Bonus) Filters are persisted during page refresh using query parameters
+7. (Bonus) Filters can be cleared from a button action
+8. (Bonus) Creative UI and UX

@@ -1,0 +1,68 @@
+<main class="listing-page__container">
+  <!-- ## TABLE TOOLBAR SECTION -->
+  <section class="table">
+    <div class="table-toolbar">
+      <div class="table-toolbar__filters">
+        <!-- Search filter goes here-->
+
+        <!-- Status filter goes here-->
+      </div>
+    </div>
+
+    <!-- ## TABLE SECTION -->
+    <div class="table-content">
+      <table mat-table [dataSource]="data">
+        <!-- Date Joined Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell mat-column-date *matCellDef="let element">date</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Company</th>
+          <td mat-cell mat-column-type *matCellDef="let element">Company</td>
+        </ng-container>
+
+        <!-- BRN Column -->
+        <ng-container matColumnDef="brn">
+          <th mat-header-cell *matHeaderCellDef>BRN</th>
+          <td mat-cell mat-column-type *matCellDef="let element">brn</td>
+        </ng-container>
+
+        <!-- PIC Column -->
+        <ng-container matColumnDef="pic">
+          <th mat-header-cell *matHeaderCellDef>PIC</th>
+          <td mat-cell mat-column-policy *matCellDef="let element">PIC</td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell mat-column-amount *matCellDef="let element">Email</td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell mat-column-status *matCellDef="let element">Status</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr *matNoDataRow>
+          <td class="mat-cell" colspan="9999">
+            <ngx-skeleton-loader
+              count="3"
+              [theme]="{
+                height: '40px',
+                'animation-duration': '1s'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</main>

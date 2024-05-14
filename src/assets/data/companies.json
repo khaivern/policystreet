@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "date": "2022-01-01T00:00:00.000Z",
+    "name": "ABC Corp",
+    "brn": "12345",
+    "pic": "John Doe",
+    "email": "abc@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "2",
+    "date": "2022-02-15T00:00:00.000Z",
+    "name": "XYZ Inc",
+    "brn": "67890",
+    "pic": "Jane Smith",
+    "email": "xyz@example.com",
+    "status": "Pending"
+  },
+  {
+    "id": "3",
+    "date": "2022-03-20T00:00:00.000Z",
+    "name": "PQR Ltd",
+    "brn": "54321",
+    "pic": "Alice Johnson",
+    "email": "pqr@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "4",
+    "date": "2022-04-10T00:00:00.000Z",
+    "name": "LMN Enterprises",
+    "brn": "09876",
+    "pic": "Bob Brown",
+    "email": "lmn@example.com",
+    "status": "Pending"
+  },
+  {
+    "id": "5",
+    "date": "2022-05-05T00:00:00.000Z",
+    "name": "JKL Solutions",
+    "brn": "13579",
+    "pic": "Sarah Lee",
+    "email": "jkl@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "6",
+    "date": "2022-06-18T00:00:00.000Z",
+    "name": "EFG Group",
+    "brn": "24680",
+    "pic": "Michael Johnson",
+    "email": "efg@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "7",
+    "date": "2022-07-22T00:00:00.000Z",
+    "name": "MNO Innovations",
+    "brn": "97531",
+    "pic": "Emily Davis",
+    "email": "mno@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "8",
+    "date": "2022-08-11T00:00:00.000Z",
+    "name": "GHI Corp",
+    "brn": "75321",
+    "pic": "Chris Evans",
+    "email": "ghi@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "9",
+    "date": "2022-09-07T00:00:00.000Z",
+    "name": "RST Enterprises",
+    "brn": "98765",
+    "pic": "Olivia Wilson",
+    "email": "rst@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "10",
+    "date": "2022-10-30T00:00:00.000Z",
+    "name": "UVW Holdings",
+    "brn": "45678",
+    "pic": "Matthew Taylor",
+    "email": "uvw@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "11",
+    "date": "2022-11-20T00:00:00.000Z",
+    "name": "NOP Solutions",
+    "brn": "24680",
+    "pic": "Andrew Thompson",
+    "email": "nop@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "12",
+    "date": "2022-12-15T00:00:00.000Z",
+    "name": "QRS Tech",
+    "brn": "98765",
+    "pic": "Jessica Martinez",
+    "email": "qrs@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "13",
+    "date": "2023-01-10T00:00:00.000Z",
+    "name": "VWX Solutions",
+    "brn": "12345",
+    "pic": "David Brown",
+    "email": "vwx@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "14",
+    "date": "2023-02-05T00:00:00.000Z",
+    "name": "TUV Innovations",
+    "brn": "54321",
+    "pic": "Ava Garcia",
+    "email": "tuv@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "15",
+    "date": "2023-03-22T00:00:00.000Z",
+    "name": "LMN Technologies",
+    "brn": "67890",
+    "pic": "Daniel Rodriguez",
+    "email": "lmn@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "16",
+    "date": "2023-04-18T00:00:00.000Z",
+    "name": "STU Solutions",
+    "brn": "97531",
+    "pic": "Sophia Nguyen",
+    "email": "stu@example.com",
+    "status": "Active"
+  },
+  {
+    "id": "17",
+    "date": "2023-05-12T00:00:00.000Z",
+    "name": "DEF Group",
+    "brn": "75321",
+    "pic": "Ethan Martinez",
+    "email": "def@example.com",
+    "status": "Pending"
+  },
+  {
+    "id": "18",
+    "date": "2023-06-27T00:00:00.000Z",
+    "name": "WXY Enterprises",
+    "brn": "97531",
+    "pic": "Mia Taylor",
+    "email": "wxy@example.com",
+    "status": "Cancelled"
+  },
+  {
+    "id": "19",
+    "date": "2023-07-30T00:00:00.000Z",
+    "name": "GHI Solutions",
+    "brn": "75321",
+    "pic": "Noah Brown",
+    "email": "ghi@example.com",
+    "status": "Cancelled"
+  },
+  {
+    "id": "20",
+    "date": "2023-08-25T00:00:00.000Z",
+    "name": "JKL Technologies",
+    "brn": "13579",
+    "pic": "Isabella Johnson",
+    "email": "jkl@example.com",
+    "status": "Cancelled"
+  }
+]
