@@ -7,47 +7,69 @@
         <app-search-filter (search)="onSearch($event)"></app-search-filter>
 
         <!-- Status filter goes here-->
-        <app-status-filter (statusChange)="onStatusChange($event)"></app-status-filter>
+        <app-status-filter
+          (statusChange)="onStatusChange($event)"
+        ></app-status-filter>
       </div>
     </div>
 
     <!-- ## TABLE SECTION -->
     <div class="table-content">
       <table mat-table [dataSource]="data">
+        <!-- Index Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ getRowIndex(i) }}
+          </td>
+        </ng-container>
+
         <!-- Date Joined Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
-          <td mat-cell mat-column-date *matCellDef="let element">date</td>
+          <td mat-cell mat-column-date *matCellDef="let element">
+            {{ element.date | date }}
+          </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Company</th>
-          <td mat-cell mat-column-type *matCellDef="let element">Company</td>
+          <td mat-cell mat-column-type *matCellDef="let element">
+            {{ element.name }}
+          </td>
         </ng-container>
 
         <!-- BRN Column -->
         <ng-container matColumnDef="brn">
           <th mat-header-cell *matHeaderCellDef>BRN</th>
-          <td mat-cell mat-column-type *matCellDef="let element">brn</td>
+          <td mat-cell mat-column-type *matCellDef="let element">
+            {{ element.brn }}
+          </td>
         </ng-container>
 
         <!-- PIC Column -->
         <ng-container matColumnDef="pic">
           <th mat-header-cell *matHeaderCellDef>PIC</th>
-          <td mat-cell mat-column-policy *matCellDef="let element">PIC</td>
+          <td mat-cell mat-column-policy *matCellDef="let element">
+            {{ element.pic }}
+          </td>
         </ng-container>
 
         <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell mat-column-amount *matCellDef="let element">Email</td>
+          <td mat-cell mat-column-amount *matCellDef="let element">
+            {{ element.email }}
+          </td>
         </ng-container>
 
         <!-- Status Column -->
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell mat-column-status *matCellDef="let element">Status</td>
+          <td mat-cell mat-column-status *matCellDef="let element">
+            {{ element.status }}
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

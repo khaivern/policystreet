@@ -46,6 +46,7 @@ export class ListingComponent implements OnInit {
 
   // TABLE COLUNS
   public displayedColumns: string[] = [
+    "index",
     "date",
     "name",
     "brn",
@@ -71,6 +72,11 @@ export class ListingComponent implements OnInit {
       .subscribe((x) => {
         this.data = x.data;
       });
+  }
+
+  getRowIndex(index: number): number {
+    const pageIndex = this.pagination$.value.page - 1;
+    return (pageIndex * this.pagination$.value.pageSize) + index + 1;
   }
 
   onSearch(keyword: string): void {
