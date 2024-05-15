@@ -15,7 +15,11 @@
           (statusChange)="onStatusChange($event)"
         ></app-status-filter>
 
-        <button class="table-toolbar__clear-btn" mat-stroked-button (click)="onClearFilters()">
+        <button
+          class="table-toolbar__clear-btn"
+          mat-stroked-button
+          (click)="onClearFilters()"
+        >
           <mat-icon>close</mat-icon>
           Clear Filters
         </button>
@@ -114,7 +118,10 @@
 
         <tr *matNoDataRow [ngClass]="isLoading ? 'hidden' : 'table-row'">
           <td colspan="9999">
-            <span>No Data</span>
+            <div class="table-content__no-data">
+              <img src="/assets/images/no-data.svg" alt="No Data" />
+            </div>
+            <div class="table-content__no-data-text">Bummer! No results found.</div>
           </td>
         </tr>
       </table>
