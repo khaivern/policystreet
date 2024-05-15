@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
@@ -8,9 +8,11 @@ import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import {
   BehaviorSubject,
   Observable,
+  Subject,
   combineLatest,
   finalize,
   switchMap,
+  takeUntil,
   tap,
 } from "rxjs";
 import { SearchFilterComponent } from "../shared/components/search-filter/search-filter.component";
@@ -41,7 +43,7 @@ import { DEFAULT_FILTER, DEFAULT_PAGINATION } from "./listing.constant";
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
 })
-export class ListingComponent implements OnInit {
+export class ListingComponent implements OnInit, OnDestroy {
   public filterProperties: IFilter = this.getFilterProperties();
   public paginationProperties: IPaginationMetadata =
     this.getPaginationProperties();
@@ -68,6 +70,8 @@ export class ListingComponent implements OnInit {
 
   public isLoading = false;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private listingService: ListingService,
     private storageService: StorageService,
@@ -78,10 +82,16 @@ export class ListingComponent implements OnInit {
      * You are expected to start here and modify this code to use RxJs practices. Happy Coding! */
     combineLatest([this.filterQuery$, this.pagination$])
       .pipe(
+        takeUntil(this.destroy$),
         tap((result) => this.cacheFilters(result)),
         switchMap(() => this.getListing$()),
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   public onClearFilters(): void {
