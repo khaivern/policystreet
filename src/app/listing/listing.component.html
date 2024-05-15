@@ -88,5 +88,16 @@
         </tr>
       </table>
     </div>
+
+    <!-- ## PAGINATOR SECTION -->
+    <div class="paginator">
+      <mat-paginator
+        [pageSizeOptions]="[1, 5, 10, 25]"
+        [length]="paginationProperties.totalItems"
+        [pageSize]="paginationProperties.pageSize"
+        [pageIndex]="paginationProperties.page - 1"
+        (page)="onPaginate($event)"
+      ></mat-paginator>
+    </div>
   </section>
 </main>
