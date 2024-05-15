@@ -66,7 +66,7 @@ export class ListingComponent implements OnInit, OnDestroy {
   ];
 
   // To be converted to an Observable
-  public data: ICompany[] = [];
+  public data$: BehaviorSubject<ICompany[]> = new BehaviorSubject<ICompany[]>([]);
 
   public isLoading = false;
 
@@ -151,7 +151,7 @@ export class ListingComponent implements OnInit, OnDestroy {
       .pipe(
         finalize(() => (this.isLoading = false)),
         tap((result) => {
-          this.data = result.data;
+          this.data$.next(result.data);
           this.paginationProperties = result.metadata;
         }),
       );

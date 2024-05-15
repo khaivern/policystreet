@@ -24,7 +24,7 @@
 
     <!-- ## TABLE SECTION -->
     <div class="table-content">
-      <table mat-table [dataSource]="data">
+      <table mat-table [dataSource]="(data$ | async) || []">
         <!-- Index Column -->
         <ng-container matColumnDef="index">
           <th mat-header-cell *matHeaderCellDef>#</th>
