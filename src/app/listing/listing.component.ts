@@ -78,8 +78,8 @@ export class ListingComponent implements OnInit {
   }
 
   public getRowIndex(index: number): number {
-    const pageIndex = this.pagination$.value.page - 1;
-    return pageIndex * this.pagination$.value.pageSize + index + 1;
+    const pageIndex = this.paginationProperties.page - 1;
+    return pageIndex * this.paginationProperties.pageSize + index + 1;
   }
 
   public onSearch(keyword: string): void {
