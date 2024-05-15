@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
@@ -22,12 +23,14 @@ import {
 } from "../shared/interfaces/common.interface";
 import { ListingService } from "../shared/services/listing.service";
 import { StorageService } from "../shared/services/storage.service";
+import { DEFAULT_FILTER, DEFAULT_PAGINATION } from "./listing.constant";
 
 @Component({
   selector: "app-listing",
   standalone: true,
   imports: [
     CommonModule,
+    MatButtonModule,
     MatIconModule,
     NgxSkeletonLoaderModule,
     MatTableModule,
@@ -81,6 +84,14 @@ export class ListingComponent implements OnInit {
       .subscribe();
   }
 
+  public onClearFilters(): void {
+    this.filterProperties = { ...DEFAULT_FILTER };
+    this.paginationProperties = { ...DEFAULT_PAGINATION };
+
+    this.filterQuery$.next(this.filterProperties);
+    this.pagination$.next(this.paginationProperties);
+  }
+
   public getRowIndex(index: number): number {
     const pageIndex = this.paginationProperties.page - 1;
     return pageIndex * this.paginationProperties.pageSize + index + 1;
@@ -103,22 +114,11 @@ export class ListingComponent implements OnInit {
   }
 
   private getFilterProperties(): IFilter {
-    return (
-      this.storageService.filter || {
-        searchValue: "",
-        statusList: [],
-      }
-    );
+    return this.storageService.filter || DEFAULT_FILTER;
   }
 
   private getPaginationProperties(): IPaginationMetadata {
-    return (
-      this.storageService.pagination || {
-        page: 1,
-        pageSize: 5,
-        totalItems: 0,
-      }
-    );
+    return this.storageService.pagination || DEFAULT_PAGINATION;
   }
 
   private cacheFilters([filter, pagination]: [

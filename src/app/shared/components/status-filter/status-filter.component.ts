@@ -1,8 +1,17 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from "@angular/core";
+import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
+import { Subject, debounceTime, distinctUntilChanged, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-status-filter",
@@ -11,7 +20,7 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
   templateUrl: "./status-filter.component.html",
   styleUrl: "./status-filter.component.scss",
 })
-export class StatusFilterComponent implements OnInit, OnDestroy {
+export class StatusFilterComponent implements OnInit, OnChanges, OnDestroy {
   @Input() value: string[] = [];
   @Output() statusChange = new EventEmitter<string[]>();
 
@@ -28,6 +37,12 @@ export class StatusFilterComponent implements OnInit, OnDestroy {
     this.initValueChangesSubscription();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["value"]) {
+      this.statusControl.patchValue(this.value);
+    }
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -35,7 +50,11 @@ export class StatusFilterComponent implements OnInit, OnDestroy {
 
   private initValueChangesSubscription(): void {
     this.statusControl.valueChanges
-      .pipe(debounceTime(250), distinctUntilChanged(this.statusComparator), takeUntil(this.destroy$))
+      .pipe(
+        debounceTime(250),
+        distinctUntilChanged(this.statusComparator),
+        takeUntil(this.destroy$),
+      )
       .subscribe((status) => {
         this.statusChange.emit(status);
       });

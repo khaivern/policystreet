@@ -2,9 +2,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -24,7 +26,7 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from "rxjs";
   templateUrl: "./search-filter.component.html",
   styleUrl: "./search-filter.component.scss",
 })
-export class SearchFilterComponent implements OnInit, OnDestroy {
+export class SearchFilterComponent implements OnInit, OnChanges, OnDestroy {
   @Input() value = "";
   @Output() search = new EventEmitter<string>();
 
@@ -37,6 +39,12 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.searchControl.patchValue(this.value);
     this.initValueChangesSubscription();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["value"]) {
+      this.searchControl.patchValue(this.value);
+    }
   }
 
   ngOnDestroy(): void {

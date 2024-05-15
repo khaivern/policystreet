@@ -1,19 +1,16 @@
 import { Injectable } from "@angular/core";
+import {
+  DEFAULT_FILTER,
+  DEFAULT_PAGINATION,
+} from "../../listing/listing.constant";
 import { IFilter, IPaginationMetadata } from "../interfaces/common.interface";
 
 @Injectable({ providedIn: "root" })
 export class StorageService {
-  DEFAULT_FILTER: IFilter = { searchValue: "", statusList: [] };
-  DEFAULT_PAGINATION: IPaginationMetadata = {
-    page: 1,
-    pageSize: 5,
-    totalItems: 0,
-  };
-
   get filter(): IFilter {
     const filterCache = localStorage.getItem("filter");
     if (!filterCache) {
-      return this.DEFAULT_FILTER;
+      return DEFAULT_FILTER;
     }
     return JSON.parse(filterCache);
   }
@@ -29,7 +26,7 @@ export class StorageService {
   get pagination(): IPaginationMetadata {
     const paginationCache = localStorage.getItem("pagination");
     if (!paginationCache) {
-      return this.DEFAULT_PAGINATION;
+      return DEFAULT_PAGINATION;
     }
     return JSON.parse(paginationCache);
   }
