@@ -6,3 +6,43 @@
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+body {
+  background-color: #fff3e0;
+  min-height: 100vh;
+}
+
+.table-content {
+  .mat-mdc-header-row {
+    background-color: #333333;
+    color: white;
+  }
+
+  .mat-mdc-row:nth-child(even) {
+    background-color: #e4e4e4;
+  }
+
+  .mat-mdc-row:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .mat-column-loading {
+    padding-top: 1rem;
+  }
+}
+
+.paginator .mat-mdc-paginator {
+  background-color: white;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-filter,
+.status-filter {
+  background-color: white;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}

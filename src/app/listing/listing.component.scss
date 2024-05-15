@@ -7,6 +7,7 @@
 .table {
   overflow: auto;
   .table-toolbar {
+    background-color: white;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -22,6 +23,7 @@
     }
 
     &__clear-btn {
+      background-color: white;
       margin-left: auto;
     }
   }
@@ -32,6 +34,7 @@
     border-top: none;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
+    margin-bottom: 1rem;
 
     &__no-data {
       margin: auto;
