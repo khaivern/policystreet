@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -24,6 +25,7 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from "rxjs";
   styleUrl: "./search-filter.component.scss",
 })
 export class SearchFilterComponent implements OnInit, OnDestroy {
+  @Input() value = "";
   @Output() search = new EventEmitter<string>();
 
   public searchControl = this.formBuilder.control("");
@@ -33,6 +35,7 @@ export class SearchFilterComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: NonNullableFormBuilder) {}
 
   ngOnInit(): void {
+    this.searchControl.patchValue(this.value);
     this.initValueChangesSubscription();
   }
 

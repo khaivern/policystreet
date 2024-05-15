@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,6 +12,7 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
   styleUrl: "./status-filter.component.scss",
 })
 export class StatusFilterComponent implements OnInit, OnDestroy {
+  @Input() value: string[] = [];
   @Output() statusChange = new EventEmitter<string[]>();
 
   public STATUS_LIST = ["Active", "Pending", "Cancelled"];
@@ -23,6 +24,7 @@ export class StatusFilterComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: NonNullableFormBuilder) {}
 
   ngOnInit(): void {
+    this.statusControl.patchValue(this.value);
     this.initValueChangesSubscription();
   }
 

@@ -4,10 +4,14 @@
     <div class="table-toolbar">
       <div class="table-toolbar__filters">
         <!-- Search filter goes here-->
-        <app-search-filter (search)="onSearch($event)"></app-search-filter>
+        <app-search-filter
+          [value]="filterProperties.searchValue"
+          (search)="onSearch($event)"
+        ></app-search-filter>
 
         <!-- Status filter goes here-->
         <app-status-filter
+          [value]="filterProperties.statusList"
           (statusChange)="onStatusChange($event)"
         ></app-status-filter>
       </div>

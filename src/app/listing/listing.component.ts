@@ -21,6 +21,7 @@ import {
   IPaginationMetadata,
 } from "../shared/interfaces/common.interface";
 import { ListingService } from "../shared/services/listing.service";
+import { StorageService } from "../shared/services/storage.service";
 
 @Component({
   selector: "app-listing",
@@ -38,15 +39,9 @@ import { ListingService } from "../shared/services/listing.service";
   styleUrl: "./listing.component.scss",
 })
 export class ListingComponent implements OnInit {
-  public filterProperties: IFilter = {
-    searchValue: "",
-    statusList: [],
-  };
-  public paginationProperties: IPaginationMetadata = {
-    page: 1,
-    pageSize: 5,
-    totalItems: 0,
-  };
+  public filterProperties: IFilter = this.getFilterProperties();
+  public paginationProperties: IPaginationMetadata =
+    this.getPaginationProperties();
   public filterQuery$ = new BehaviorSubject<IFilter>(this.filterProperties);
   public pagination$ = new BehaviorSubject<{
     page: number;
@@ -70,13 +65,19 @@ export class ListingComponent implements OnInit {
 
   public isLoading = false;
 
-  constructor(private listingService: ListingService) {}
+  constructor(
+    private listingService: ListingService,
+    private storageService: StorageService,
+  ) {}
 
   ngOnInit(): void {
     /* This is a dummy API used to simulate a GET request to obtain the relevant data
      * You are expected to start here and modify this code to use RxJs practices. Happy Coding! */
     combineLatest([this.filterQuery$, this.pagination$])
-      .pipe(switchMap(() => this.getListing$()))
+      .pipe(
+        tap((result) => this.cacheFilters(result)),
+        switchMap(() => this.getListing$()),
+      )
       .subscribe();
   }
 
@@ -101,6 +102,33 @@ export class ListingComponent implements OnInit {
     this.pagination$.next({ ...this.paginationProperties });
   }
 
+  private getFilterProperties(): IFilter {
+    return (
+      this.storageService.filter || {
+        searchValue: "",
+        statusList: [],
+      }
+    );
+  }
+
+  private getPaginationProperties(): IPaginationMetadata {
+    return (
+      this.storageService.pagination || {
+        page: 1,
+        pageSize: 5,
+        totalItems: 0,
+      }
+    );
+  }
+
+  private cacheFilters([filter, pagination]: [
+    IFilter,
+    IPaginationMetadata,
+  ]): void {
+    this.storageService.filter = filter;
+    this.storageService.pagination = pagination;
+  }
+
   private getListing$(): Observable<ICompanyResponse> {
     this.isLoading = true;
 
@@ -111,7 +139,7 @@ export class ListingComponent implements OnInit {
         this.filterProperties,
       )
       .pipe(
-        finalize(() => this.isLoading = false),
+        finalize(() => (this.isLoading = false)),
         tap((result) => {
           this.data = result.data;
           this.paginationProperties = result.metadata;
