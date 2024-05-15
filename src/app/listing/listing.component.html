@@ -73,17 +73,39 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        <tr *matNoDataRow>
-          <td class="mat-cell" colspan="9999">
+        <tr
+          [ngClass]="isLoading ? 'hidden' : 'table-row'"
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+
+        <ng-container matColumnDef="loading">
+          <td
+            *matFooterCellDef
+            mat-footer-cell
+            [attr.colspan]="displayedColumns.length"
+          >
             <ngx-skeleton-loader
               count="3"
               [theme]="{
                 height: '40px',
+                marginTop: '16px',
                 'animation-duration': '1s'
               }"
             >
             </ngx-skeleton-loader>
+          </td>
+        </ng-container>
+
+        <tr
+          *matFooterRowDef="['loading']"
+          mat-footer-row
+          [ngClass]="isLoading ? 'table-row' : 'hidden'"
+        ></tr>
+
+        <tr *matNoDataRow [ngClass]="isLoading ? 'hidden' : 'table-row'">
+          <td colspan="9999">
+            <span>No Data</span>
           </td>
         </tr>
       </table>

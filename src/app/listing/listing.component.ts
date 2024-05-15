@@ -8,6 +8,7 @@ import {
   BehaviorSubject,
   Observable,
   combineLatest,
+  finalize,
   switchMap,
   tap,
 } from "rxjs";
@@ -67,6 +68,8 @@ export class ListingComponent implements OnInit {
   // To be converted to an Observable
   public data: ICompany[] = [];
 
+  public isLoading = false;
+
   constructor(private listingService: ListingService) {}
 
   ngOnInit(): void {
@@ -99,6 +102,8 @@ export class ListingComponent implements OnInit {
   }
 
   private getListing$(): Observable<ICompanyResponse> {
+    this.isLoading = true;
+
     return this.listingService
       .getListing(
         this.paginationProperties.page,
@@ -106,6 +111,7 @@ export class ListingComponent implements OnInit {
         this.filterProperties,
       )
       .pipe(
+        finalize(() => this.isLoading = false),
         tap((result) => {
           this.data = result.data;
           this.paginationProperties = result.metadata;
