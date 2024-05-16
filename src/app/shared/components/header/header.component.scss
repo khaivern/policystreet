@@ -1,6 +1,4 @@
 .slideshow {
-  height: 5.75rem;
-  margin-top: 2rem;
   position: relative;
 }
 
@@ -12,9 +10,14 @@
   position: absolute;
   text-align: center;
   top: 0;
+  font-size: 3rem;
   transform: scale(1.1) translateX(-1rem) rotate(-5deg);
   transition: all 0.5s ease-in-out;
   width: 100%;
+
+  @media (max-width: 576px) {
+    font-size: 2rem;
+  }
 }
 
 .slideshow .active {
