@@ -26,6 +26,7 @@ import {
 import { ListingService } from "../shared/services/listing.service";
 import { StorageService } from "../shared/services/storage.service";
 import { DEFAULT_FILTER, DEFAULT_PAGINATION } from "./listing.constant";
+import { HeaderComponent } from '../shared/components/header/header.component';
 
 @Component({
   selector: "app-listing",
@@ -39,6 +40,7 @@ import { DEFAULT_FILTER, DEFAULT_PAGINATION } from "./listing.constant";
     MatPaginatorModule,
     SearchFilterComponent,
     StatusFilterComponent,
+    HeaderComponent
   ],
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",

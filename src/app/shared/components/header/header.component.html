@@ -1,0 +1,5 @@
+<header class="slideshow">
+  @for (heading of HEADINGS; track heading; let index = $index) {
+  <h1 [class.active]="currentIndex === index">{{ heading }}</h1>
+  }
+</header>
